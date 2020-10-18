@@ -18,9 +18,12 @@ function getTask() {
     }).then(function (response) {
         $('#taskTableBody').empty();
         for (let i = 0; i < response.length; i++) {
+            if (response[i].complete == true) {
+                $('.taskText').addClass('complete');
+            }
             $('#taskTableBody').append(`
                 <tr>
-                    <td>${response[i].task}</td>
+                    <td class="taskText">${response[i].task}</td>
                     <td><button data-id="${response[i].id}" class="completeBtn">Complete</button></td>
                     <td><button data-id="${response[i].id}" class="deleteBtn">DELETE</button></td>
                 </tr>
@@ -48,6 +51,18 @@ function postTask() {
 
 function completeTask() {
     console.log('hello from complete');
+    let taskId = $(this).data('id');
+
+    $.ajax({
+        method: 'PUT',
+        url: `/list/${taskId}`
+    }).then(function(response) {
+        // console.log(response);
+        getTask();
+    }).catch(function(error){
+        console.log(error);
+        
+    })
 }
 
 function deleteTask() {
