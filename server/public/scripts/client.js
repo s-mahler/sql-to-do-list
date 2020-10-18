@@ -6,6 +6,8 @@ function onReady() {
     console.log('JQ');
     getTask();
     $('#submit').on('click', postTask);
+    $('#taskTable').on('click', '.completeBtn', completeTask);
+    $('#taskTable').on('click', '.deleteBtn', deleteTask);
 }
 
 function getTask() {
@@ -14,12 +16,13 @@ function getTask() {
         method: 'GET',
         url: '/list'
     }).then(function (response) {
+        $('#taskTableBody').empty();
         for (let i = 0; i < response.length; i++) {
             $('#taskTableBody').append(`
                 <tr>
                     <td>${response[i].task}</td>
                     <td><button data-id="${response[i].id}" class="completeBtn">Complete</button></td>
-                    <td><button data-complete="${response[i].complete}" data-id="${response[i].id}" class="rankUp">DELETE</button></td>
+                    <td><button data-id="${response[i].id}" class="deleteBtn">DELETE</button></td>
                 </tr>
             `);
         }
@@ -41,4 +44,12 @@ function postTask() {
         getTask();
         $('#taskIn').val('')
     });
+}
+
+function completeTask() {
+    console.log('hello from complete');
+}
+
+function deleteTask() {
+    console.log('hello from delete');
 }
