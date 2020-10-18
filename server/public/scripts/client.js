@@ -30,4 +30,15 @@ function getTask() {
 
 function postTask() {
     console.log('in post');
+         let payloadObject = {
+            task: $('#taskIn').val()
+        }
+        $.ajax({
+             method: 'POST',
+             url: '/list',
+             data: payloadObject
+         }).then( function (response) {
+            getTask(); 
+            $('#taskIn').val('')
+         });
 }

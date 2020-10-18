@@ -12,4 +12,20 @@ router.get('/', (req, res) => {
     })
 });
 
+router.post('/', (req, res) => {
+    console.log('req.body', req.body);
+    
+    let task = req.body.task;
+    // let complete = req.body.complete;
+    
+    let queryText = `INSERT INTO "toDoList" ("task", "complete")
+    VALUES ('${task}', 'false');`;
+    pool.query(queryText).then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
+
 module.exports = router;
