@@ -52,4 +52,14 @@ function completeTask() {
 
 function deleteTask() {
     console.log('hello from delete');
+    let taskId = $(this).data('id');
+    $.ajax({
+        method: 'DELETE',
+        url: `/list/${taskId}`
+    }).then(function(response){
+        console.log(response);
+        getTask();
+    }).catch(function(error){
+        console.log(error);
+    });
 }

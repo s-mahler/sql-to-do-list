@@ -28,4 +28,15 @@ router.post('/', (req, res) => {
     });
 });
 
+router.delete('/:idParam', (req, res) => {
+    console.log('hello from delete', req.params.idParam);
+    let queryText = `DELETE FROM "toDoList" WHERE "id" = $1;`;
+    pool.query(queryText, [req.params.idParam]).then((result) => {
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
+
 module.exports = router;
