@@ -26,7 +26,7 @@ function getTask() {
         for (let i = 0; i < response.length; i++) {
             $('#taskTableBody').append(`
                 <tr>
-                    <td id="taskText${response[i].id}">${response[i].task}</td>
+                    <td class="task" id="taskText${response[i].id}">${response[i].task}</td>
                     <td><button data-id="${response[i].id}" class="completeBtn">Complete</button></td>
                     <td><button data-id="${response[i].id}" class="deleteBtn">DELETE</button></td>
                 </tr>

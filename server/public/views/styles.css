@@ -1,7 +1,48 @@
 body {
     background-color: aliceblue;
+    font-family: sans-serif;
 }
 
+h1 {
+    font-weight: lighter;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+/* Still doesn't look great, but I thought the drop shadow helped readability against the darker green background */
 .complete {
     background-color: green;
+    text-shadow: 0 0 2px white;
+}
+
+.task {
+    width: 75%;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+/* Experimenting with gradient and drop shadow */
+th{
+    border: 1px solid black;
+    text-align: center;
+    background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%);;
+    text-shadow: 0 0 2px white;
+}
+  
+td{
+    border: 1px solid black;
+    text-align: left;
+}
+  
+tr:nth-child(odd) {
+    background-color: lightgray;
+}
+
+button {
+    border-radius: 5px;
 }
