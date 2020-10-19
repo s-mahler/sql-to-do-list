@@ -18,16 +18,16 @@ function getTask() {
     }).then(function (response) {
         $('#taskTableBody').empty();
         for (let i = 0; i < response.length; i++) {
-            if (response[i].complete == true) {
-                $('.taskText').addClass('complete');
-            }
             $('#taskTableBody').append(`
                 <tr>
-                    <td class="taskText">${response[i].task}</td>
+                    <td id="taskText${response[i].id}">${response[i].task}</td>
                     <td><button data-id="${response[i].id}" class="completeBtn">Complete</button></td>
                     <td><button data-id="${response[i].id}" class="deleteBtn">DELETE</button></td>
                 </tr>
             `);
+            if (response[i].complete == true) {
+                $(`#taskText${response[i].id}`).addClass('complete');
+            }
         }
     }).catch(function (error) {
         console.log(error);
